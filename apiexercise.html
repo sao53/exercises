@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Exercise</title>
+</head>
+<body>
+
+    <h1>API Exercise</h1>
+
+    <h2>Bar Charts</h2>
+    <div id="bar-chart-container"></div>
+    <br>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script type="text/javascript">
+
+        
+
+
+
+    
+        //example from docs
+       // var data = [
+       // {
+       //     x: ['giraffes', 'orangutans', 'monkeys'],
+       //     y: [20, 14, 23],
+        //    type: 'bar'
+       // }
+        //];
+        //Plotly.newPlot('bar-chart-container', data);
+
+
+        // SETUP
+
+        var barData = [
+            {"1. open": "Daily Time Series with Splits and Dividend Events"},
+            {"2. high": "GOOGL"},
+            {"3. low": "2021-04-20"},
+            {"6. volume": "Compact"},
+            {"7. dividend amount": "US/Eastern"},
+            
+        ] // leave this data as-is
+
+        //var x: ['giraffes', 'orangutans', 'monkeys'],
+        //var y: [20, 14, 23],
+
+        //var genres = []
+        //var viewers = []
+
+        //barData.forEach(function(item){
+        //    genres.push(item["genre"])
+        //    viewers.push(item["viewers"])
+        // })
+        
+        
+        var genres = barData.map(function(item){
+            return item["genre"]
+        })
+        
+        var viewers = barData.map(function(item){
+            return item["viewers"]
+        })
+
+
+
+
+        console.log("GENRES", genres)
+        console.log("VIEWERS",viewers)
+
+
+        var data = [{x: genres, y: viewers, type: 'bar'}]
+        Plotly.newPlot('bar-chart-container', data)
+
+
+        //way 3
+
+       //var genres = barData.map(item => item["genre"])
+       //var viewers = barData.map(item => item["viewers"])
+
+
+        // IMPLEMENTATION
+
+        //console.log("BAR DATA", barData)
+        // todo: write some JavaScript here!
+
+        // API Key 7WT1G6AARGEGW11P
+
+
+        // fetch data from stock API
+       
+        
+
+
+         var requestUrl = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=GOOGL&apikey=7WT1G6AARGEGW11P"
+        console.log("REQUEST URL", requestUrl)
+        fetch(requestUrl)
+            .then(response => response.json())
+            .then(stockdata => {
+                console.log("BarData", barData)
+                console.log("Information:", barData["1. open"])
+                console.log("Symbol:", barData["2. high"])
+                // etc...
+            }).catch(function(err){
+                console.error("OOPS", err)
+                alert("OOPS, please check your inputs and try again!")
+            })
+        console.log("THIS WILL BE LOGGED BEFORE THE DATA IS FETCHED")
+
+
+
+
+
+    </script>
+</body>
+</html>

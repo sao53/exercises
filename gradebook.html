@@ -72,6 +72,23 @@
 
 
 
+        //FETCH DATA REQUEST HERE 
+       
+        var requestUrl = "https://raw.githubusercontent.com/prof-rossetti/internet-technologies/main/exercises/fetch-the-data/gradebook.json"
+        console.log("REQUEST URL", requestUrl)
+        fetch(requestUrl)
+            .then(response => response.json())
+            .then(gradebook => {
+                console.log("GRADEBOOK", gradebook)
+                console.log("DOWNLOAD DATE:", gradebook["downloadDate"])
+                console.log("NUMBER OF STUDENTS:", gradebook["students"].length)
+                // etc...
+            }).catch(function(err){
+                console.error("OOPS", err)
+                alert("OOPS, please check your inputs and try again!")
+            })
+        console.log("THIS WILL BE LOGGED BEFORE THE DATA IS FETCHED")
+       
 
     </script>
 

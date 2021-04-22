@@ -1,1 +1,2 @@
 # exercises
+// API Key 7WT1G6AARGEGW11P
